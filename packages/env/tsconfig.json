@@ -1,0 +1,3 @@
+{
+  "extends": "@ecoExchange/config/tsconfig.base.json"
+}

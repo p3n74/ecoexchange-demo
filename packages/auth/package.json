@@ -1,0 +1,24 @@
+{
+  "name": "@ecoExchange/auth",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@ecoExchange/db": "*",
+    "@ecoExchange/env": "*",
+    "better-auth": "1.6.9",
+    "dotenv": "^17.2.2",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@ecoExchange/config": "*",
+    "typescript": "^6"
+  }
+}
