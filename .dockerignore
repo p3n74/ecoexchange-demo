@@ -1,0 +1,11 @@
+.git
+.turbo
+node_modules
+dist
+apps/*/dist
+packages/*/dist
+apps/server/.env
+apps/web/.env
+.env
+*.log
+docker-compose*.yml

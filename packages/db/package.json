@@ -14,7 +14,9 @@
     "db:push": "drizzle-kit push",
     "db:generate": "drizzle-kit generate",
     "db:studio": "drizzle-kit studio",
-    "db:migrate": "drizzle-kit migrate"
+    "db:migrate": "drizzle-kit migrate",
+    "db:seed": "bun run src/seed.ts",
+    "db:fix-order-fees": "bun run src/scripts/add-order-fee-columns.ts"
   },
   "dependencies": {
     "@ecoExchange/env": "*",

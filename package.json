@@ -16,7 +16,9 @@
     "db:studio": "turbo -F @ecoExchange/db db:studio",
     "db:generate": "turbo -F @ecoExchange/db db:generate",
     "db:migrate": "turbo -F @ecoExchange/db db:migrate",
-    "db:local": "turbo -F @ecoExchange/db db:local"
+    "db:local": "turbo -F @ecoExchange/db db:local",
+    "db:seed": "turbo -F @ecoExchange/db db:seed",
+    "db:fix-order-fees": "turbo -F @ecoExchange/db db:fix-order-fees"
   },
   "dependencies": {
     "@ecoExchange/env": "*",

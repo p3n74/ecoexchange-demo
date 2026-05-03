@@ -18,16 +18,20 @@ export default function SignUpForm({ onSwitchToSignIn }: { onSwitchToSignIn: () 
 
   const form = useForm({
     defaultValues: {
-      email: "",
+      username: "",
       password: "",
       name: "",
     },
     onSubmit: async ({ value }) => {
+      const username = value.username.trim().toLowerCase();
+
       await authClient.signUp.email(
         {
-          email: value.email,
+          email: `${username}@ecoexchange.local`,
           password: value.password,
           name: value.name,
+          username,
+          displayUsername: value.username.trim(),
         },
         {
           onSuccess: () => {
@@ -45,7 +49,10 @@ export default function SignUpForm({ onSwitchToSignIn }: { onSwitchToSignIn: () 
     validators: {
       onSubmit: z.object({
         name: z.string().min(2, "Name must be at least 2 characters"),
-        email: z.email("Invalid email address"),
+        username: z
+          .string()
+          .min(3, "Username must be at least 3 characters")
+          .regex(/^[a-zA-Z0-9_.]+$/, "Use letters, numbers, underscores, or dots only"),
         password: z.string().min(8, "Password must be at least 8 characters"),
       }),
     },
@@ -90,14 +97,14 @@ export default function SignUpForm({ onSwitchToSignIn }: { onSwitchToSignIn: () 
         </div>
 
         <div>
-          <form.Field name="email">
+          <form.Field name="username">
             {(field) => (
               <div className="space-y-2">
-                <Label htmlFor={field.name}>Email</Label>
+                <Label htmlFor={field.name}>Username</Label>
                 <Input
                   id={field.name}
                   name={field.name}
-                  type="email"
+                  autoComplete="username"
                   value={field.state.value}
                   onBlur={field.handleBlur}
                   onChange={(e) => field.handleChange(e.target.value)}
@@ -121,6 +128,7 @@ export default function SignUpForm({ onSwitchToSignIn }: { onSwitchToSignIn: () 
                   id={field.name}
                   name={field.name}
                   type="password"
+                  autoComplete="new-password"
                   value={field.state.value}
                   onBlur={field.handleBlur}
                   onChange={(e) => field.handleChange(e.target.value)}

@@ -3,6 +3,7 @@ import * as schema from "@ecoExchange/db/schema/auth";
 import { env } from "@ecoExchange/env/server";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { username } from "better-auth/plugins";
 
 export function createAuth() {
   const db = createDb();
@@ -26,7 +27,11 @@ export function createAuth() {
         httpOnly: true,
       },
     },
-    plugins: [],
+    plugins: [
+      username({
+        minUsernameLength: 3,
+      }),
+    ],
   });
 }
 

@@ -3,6 +3,7 @@ import { appRouter } from "@ecoExchange/api/routers/index";
 import { auth } from "@ecoExchange/auth";
 import { env } from "@ecoExchange/env/server";
 import { trpcServer } from "@hono/trpc-server";
+import { serveStatic } from "hono/bun";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
@@ -32,8 +33,20 @@ app.use(
   }),
 );
 
-app.get("/", (c) => {
+app.get("/health", (c) => {
   return c.text("OK");
+});
+
+app.use("/*", serveStatic({ root: "./public" }));
+
+app.get("*", async () => {
+  const index = Bun.file("./public/index.html");
+
+  if (!(await index.exists())) {
+    return new Response("OK");
+  }
+
+  return new Response(index);
 });
 
 export default app;
