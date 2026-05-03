@@ -30,6 +30,10 @@ COPY --from=builder /app/apps/server/dist ./apps/server/dist
 COPY --from=builder /app/apps/web/dist ./public
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/apps/server/package.json ./apps/server/package.json
+COPY --from=builder /app/packages/db/package.json ./packages/db/package.json
+COPY --from=builder /app/packages/db/src ./packages/db/src
+COPY --from=builder /app/packages/env/package.json ./packages/env/package.json
+COPY --from=builder /app/packages/env/src ./packages/env/src
 
 EXPOSE 3000
 

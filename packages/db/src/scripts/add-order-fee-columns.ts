@@ -3,8 +3,10 @@ import path from "node:path";
 import { createClient } from "@libsql/client";
 import dotenv from "dotenv";
 
+dotenv.config();
 dotenv.config({
   path: path.resolve(process.cwd(), "../../apps/server/.env"),
+  override: false,
 });
 
 const databaseUrl = process.env.DATABASE_URL;
